@@ -4,7 +4,7 @@ function HistoryList({ history, loading }) {
   return (
     <>
       <div>
-        {history.length === 0 && !loading && <p>No hay historial</p>}
+        {history?.length === 0 && !loading && <p>No hay historial</p>}
         {loading ? (
           <p>Cargando...</p>
         ) : (

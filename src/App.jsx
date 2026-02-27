@@ -10,8 +10,9 @@ export default function App() {
 
   //estado inicial
   const tempInitial = 20;
+  const initialHistory = JSON.parse(localStorage.getItem("history_temp")) || [];
   const [temp, setTemp] = useState(tempInitial);
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(initialHistory);
   const [loading, setLoading] = useState(false);
 
   const increment = () => {
@@ -64,7 +65,7 @@ export default function App() {
     localStorage.setItem("history_temp", JSON.stringify(history));
   };
   saveInLocalStorage();
-  console.log(localStorage.getItem("history_temp"));
+
   return (
     <>
       <div className="app">

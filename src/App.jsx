@@ -23,11 +23,17 @@ export default function App() {
       setHistory([
         ...history,
         {
+          id: Math.random() + 1,
           date: hour,
           temp: temp,
         },
       ]);
     } else alert(" la temperatura debe estar entre 0 y 40");
+
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   };
   const decrement = () => {
     const date = new Date();
@@ -38,21 +44,20 @@ export default function App() {
       setHistory([
         ...history,
         {
+          id: Math.random() + 1,
           date: hour,
           temp: temp,
         },
       ]);
     } else alert(" la temperatura debe estar entre 0 y 40");
-    setLoading(!loading);
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 1000);
   };
   const reset = () => {
     setTemp(tempInitial);
     setHistory([]);
-  };
-  const timeLoading = (setLoading) => {
-    setTimeout(() => {
-      setLoading(!loading);
-    }, 1000);
   };
 
   const saveInLocalStorage = () => {
@@ -69,14 +74,11 @@ export default function App() {
           increment={increment}
           decrement={decrement}
           reset={reset}
+          temp={temp}
+          loading={loading}
         />
         <div>
-          <HistoryList
-            history={history}
-            loading={loading}
-            setLoading={setLoading}
-            timeLoading={timeLoading}
-          />
+          <HistoryList history={history} loading={loading} />
         </div>
       </div>
     </>

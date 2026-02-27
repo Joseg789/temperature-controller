@@ -1,32 +1,15 @@
 import React from "react";
 
-function TemperatureControls({ reset, increment, decrement }) {
+function TemperatureControls({ reset, increment, decrement, temp, loading }) {
   return (
     <div>
-      <button
-        onClick={() => {
-          increment();
-        }}
-      >
+      <button onClick={increment} disabled={temp >= 40 || loading}>
         + Grado
       </button>
-      <button
-        onClick={() => {
-          setTimeout(() => {
-            decrement();
-          }, 1000);
-        }}
-      >
+      <button onClick={decrement} disabled={temp <= 0 || loading}>
         - Grado
       </button>
-      <button
-        onClick={() => {
-          reset();
-        }}
-      >
-        {" "}
-        Reset
-      </button>
+      <button onClick={reset}> Reset</button>
     </div>
   );
 }

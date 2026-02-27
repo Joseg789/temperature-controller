@@ -1,18 +1,22 @@
 import React from "react";
 
-function HistoryList({ history, loading, timeLoading, setLoading }) {
+function HistoryList({ history, loading }) {
   return (
     <>
       <div>
-        {loading ? <p>Cargando...</p> : ""}
-        <ul>
-          {history.map((h) => (
-            <li key={Math.random() + 1}>
-              <p>Hora: {h.date} </p>
-              <p>Temperatura: {h.temp}</p>
-            </li>
-          ))}
-        </ul>
+        {history.length === 0 && !loading && <p>No hay historial</p>}
+        {loading ? (
+          <p>Cargando...</p>
+        ) : (
+          <ul>
+            {history.map((h) => (
+              <li key={h.id + h.date}>
+                <p>Hora: {h.date} </p>
+                <p>Temperatura: {h.temp}</p>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </>
   );
